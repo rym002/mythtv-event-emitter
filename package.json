@@ -1,6 +1,6 @@
 {
     "name": "mythtv-event-emitter",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "keywords": [
         "mythtv"
     ],
@@ -17,12 +17,11 @@
         "clean": "rm .npmrc"
     },
     "dependencies": {
-        "@types/chai-http": "^4.2.0",
-        "chai-http": "^4.3.0",
         "express": "^4.17.1"
     },
     "main": "dist/index.js",
     "devDependencies": {
+        "chai-http": "^4.3.0",
         "@types/chai": "^4.2.0",
         "@types/express": "^4.17.0",
         "@types/mocha": "^5.2.7",
