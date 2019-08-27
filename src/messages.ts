@@ -66,6 +66,7 @@ export interface EventMapping {
     'REC_DELETED': RecDeletedEvent
     'REC_EXPIRED': RecExpired
     'LIVETV_STARTED': EmptyEvent
+    'LIVETV_ENDED': EmptyEvent
     'PLAY_STARTED': PlayEvent
     'PLAY_STOPPED': PlayEvent
     'PLAY_PAUSED': PlayEvent
