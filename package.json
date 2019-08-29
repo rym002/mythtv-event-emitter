@@ -1,6 +1,6 @@
 {
     "name": "mythtv-event-emitter",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Event Emitter for MythTV system events.",
     "keywords": [
         "mythtv"
@@ -16,11 +16,12 @@
         "test": "mocha -r ts-node/register test/*.test.ts",
         "clean": "rm .npmrc"
     },
-    "dependencies": {
+    "peerDependencies": {
         "express": "^4.17.1"
     },
     "main": "dist/index.js",
     "devDependencies": {
+        "express": "^4.17.1",
         "@types/chai": "^4.2.0",
         "@types/chai-http": "^4.2.0",
         "@types/express": "^4.17.0",
