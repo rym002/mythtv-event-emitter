@@ -7,7 +7,7 @@ type SenderNotificationTypes = 'pre' | 'post';
 export function notifyEvent<T extends keyof EventMapping, P extends EventMapping[T]>(eventType: T, sender: string, eventMessage: P): void {
     mythNotifier.emit('MythEvent', sender, eventType, eventMessage);
 }
-export interface MythSenderEventEmitter {
+export interface MythHostEventEmitter {
     emit<T extends keyof EventMapping, P extends EventMapping[T]>(eventType: T, message: P): boolean
     on<T extends keyof EventMapping, P extends EventMapping[T]>(eventType: T, listener: (message: P) => void): this
     once<T extends keyof EventMapping, P extends EventMapping[T]>(eventType: T, listener: (message: P) => void): this
@@ -29,29 +29,29 @@ export interface MythEventEmitter {
     once<T extends keyof EventMapping, P extends EventMapping[T]>(event: MythEvent, listener: (sender: string, eventType: T, message: P) => void): this
     removeListener<T extends keyof EventMapping, P extends EventMapping[T]>(event: MythEvent, listener: (sender: string, eventType: T, message: P) => void): this
     prependListener<T extends keyof EventMapping, P extends EventMapping[T]>(event: MythEvent, listener: (sender: string, eventType: T, message: P) => void): this
-    sender(sender: String): MythSenderEventEmitter
+    hostEmitter(sender: String): MythHostEventEmitter
     removeAllListeners(event: MythEvent): this
 }
 
 class MythEmitter extends EventEmitter implements MythEventEmitter {
-    private senders = new Map<string, MythSenderEventEmitter>();
+    private hosts = new Map<string, MythHostEventEmitter>();
     constructor() {
         super();
-        this.on('MythEvent', this.handleSenderNotification);
+        this.on('MythEvent', this.handleNotification);
     }
-    public sender(sender: string): MythSenderEventEmitter {
-        let ret = this.senders.get(sender);
+    public hostEmitter(host: string): MythHostEventEmitter {
+        let ret = this.hosts.get(host);
         if (!ret) {
             ret = new EventEmitter();
-            this.senders.set(sender, ret);
+            this.hosts.set(host, ret);
         }
         return ret;
     }
-    private handleSenderNotification<T extends keyof EventMapping, P extends EventMapping[T]>(sender: string, eventType: T, message: P) {
-        const senderEmitter = this.sender(sender);
-        senderEmitter.emit('pre', eventType, message);
-        senderEmitter.emit(eventType, message);
-        senderEmitter.emit('post', eventType, message);
+    private handleNotification<T extends keyof EventMapping, P extends EventMapping[T]>(sender: string, eventType: T, message: P) {
+        const eventEmitter = this.hostEmitter(sender);
+        eventEmitter.emit('pre', eventType, message);
+        eventEmitter.emit(eventType, message);
+        eventEmitter.emit('post', eventType, message);
     }
 }
 

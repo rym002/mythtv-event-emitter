@@ -1,3 +1,3 @@
-export { MythSenderEventEmitter, mythNotifier, MythEventEmitter } from './events';
-export { EmptyEvent, PlayEvent, RecDeletedEvent, RecEvent, RecExpired, RecPending, RemoteHostEvent } from './messages';
+export { MythHostEventEmitter as MythSenderEventEmitter, mythNotifier, MythEventEmitter } from './events';
+export * from './messages';
 export { router as httpRouter } from './router';
