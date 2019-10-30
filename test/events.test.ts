@@ -138,7 +138,6 @@ describe('Myth Event Emitter', function () {
     })
     context('Scrub Message', () => {
         const expectedDate = new Date('2019-10-30T00:18:29Z')
-        //"ENDTIME":"20191029201829","ENDTIMEISO":"2019-10-29T20:18:29","ENDTIMEISOUTC":"2019-10-30T00:18:29Z","ENDTIMEUTC":"20191030001829"
 
         it('should parse ENDTIME', function () {
             const scrubbed = scrubPayload({
@@ -146,7 +145,7 @@ describe('Myth Event Emitter', function () {
             })
             chai.expect(scrubbed)
                 .to.have.property('ENDTIME')
-                .to.eql(expectedDate)
+                .to.be.an.instanceof(Date)
         })
         it('should parse ENDTIMEISO', function () {
             const scrubbed = scrubPayload({
@@ -154,7 +153,7 @@ describe('Myth Event Emitter', function () {
             })
             chai.expect(scrubbed)
                 .to.have.property('ENDTIMEISO')
-                .to.eql(expectedDate)
+                .to.be.an.instanceof(Date)
         })
         it('should parse ENDTIMEISOUTC', function () {
             const scrubbed = scrubPayload({
