@@ -82,7 +82,7 @@ type RecordingInfo = Pick<ScriptMessage, 'RECID' | 'PARENTID' | 'FINDID' | 'RECS
     & ProgramInfo
 type UnknownRecording = Pick<ScriptMessage, 'CHANID' | 'STARTTIME' | 'STARTTIMEISO'>
 
-type RecordingEvent = (RecordingInfo | UnknownRecording) & AllEvent
+type RecordingEvent = (RecordingInfo & UnknownRecording) & AllEvent
 
 /** 
  * From libs/libmythtv/mythsystemevent.cpp
