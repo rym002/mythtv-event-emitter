@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { notifyEvent } from "./events";
-import { ScriptMessage } from "./messages";
+import { ScriptMessage, dateFields } from "./messages";
 import bodyParser = require("body-parser");
 import moment = require("moment");
 
@@ -13,19 +13,13 @@ router.use(bodyParser.json())
         });
     })
 
-const dateFields = [
-    'ENDTIME',
-    'PROGEND',
-    'PROGSTART',
-    'STARTTIME'
-]
 const utcDateFields = dateFields.map(field => {
     return field + 'UTC'
 })
-const isoFields = dateFields.map(field=>{
+const isoFields = dateFields.map(field => {
     return field + 'ISO'
 })
-const isoUtcFields = isoFields.map(field=>{
+const isoUtcFields = isoFields.map(field => {
     return field + 'UTC'
 })
 const mythDateFormat = 'YYYYMMDDHHmmss'
@@ -35,7 +29,7 @@ export function scrubPayload(message: any) {
         if (key != 'SENDER' && key != 'EVENTNAME') {
             if (value && ('%' + key + '%' == value || value.trim() == "")) {
                 message[key] = undefined
-            }else{
+            } else {
                 if (isoFields.includes(key) || isoUtcFields.includes(key)) {
                     message[key] = new Date(value)
                 } else if (dateFields.includes(key)) {
@@ -44,7 +38,7 @@ export function scrubPayload(message: any) {
                     message[key] = moment.utc(value, mythDateFormat).toDate()
                 } else if (key == 'ORIGINALAIRDATE') {
                     message[key] = moment(value, 'YYYY-MM-DD').toDate()
-                }    
+                }
             }
         }
     })

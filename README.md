@@ -1,7 +1,8 @@
 # mythtv-event-emitter  ![Build Status](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoic1lYSVhhblFrM0xERm9ER1hjVXR5K0Ewb3htZFVLaEx1SkV4eDQyMjMzVnFHMEl4ZTdqTzVVSkFJamM0WlhpaWtMSlRGNVQ1ZDF5Um0xZ2t5KytsVStZPSIsIml2UGFyYW1ldGVyU3BlYyI6IkpBNzgvQ2kvcEZVRGUxSnoiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 ## Typescript Client library with an http endpoint for sending mythtv events.
 ## Exposes endpoint specific event emitters
-### Supports
+## Myth protocol client to monitor for events
+## Supported events
 * CLIENT_CONNECTED
 * CLIENT_DISCONNECTED
 * SLAVE_CONNECTED

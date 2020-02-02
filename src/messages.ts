@@ -129,3 +129,10 @@ export interface EventMapping {
     'KEY_10': AllEvent
     'CEC_COMMAND_RECEIVED': CecCommandEvent
 }
+
+export const dateFields = [
+    'ENDTIME',
+    'PROGEND',
+    'PROGSTART',
+    'STARTTIME'
+]
