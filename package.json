@@ -1,6 +1,6 @@
 {
     "name": "mythtv-event-emitter",
-    "version": "30.0.1",
+    "version": "30.0.2",
     "description": "Event Emitter for MythTV system events.",
     "keywords": [
         "mythtv"
